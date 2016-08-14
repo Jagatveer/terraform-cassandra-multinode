@@ -1,0 +1,4 @@
+terraform.tfstate*
+terraform_psnl.pem
+.git
+.DS_Store
