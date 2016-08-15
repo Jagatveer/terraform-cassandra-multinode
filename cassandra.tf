@@ -102,7 +102,6 @@ resource "aws_instance" "cassandra_2" {
   }
 }
 
-
 resource "aws_ebs_volume" "cassandra_0" {
   availability_zone = "us-west-2a"
   size = 500

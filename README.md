@@ -45,9 +45,9 @@ On each node in sequence do the following steps:
   bash /tmp/provisioning/setup_cassandra.sh 2
   ```
 
-After all the nodes are up and waiting for connection (tail -f /var/log/cassandra/system.out)
+After all the nodes are up and waiting for connection (tail -f /var/log/cassandra/system.log)
   ```
-  ubuntu@ip-10-2-5-172:~$ nodetool status
+ubuntu@ip-10-2-5-172:~$ nodetool status
 Datacenter: datacenter1
 =======================
 Status=Up/Down

@@ -9,5 +9,3 @@ output "cassandra_1" {
 output "cassandra_2" {
   value = "${aws_instance.cassandra_2.public_ip}"
 }
-
-

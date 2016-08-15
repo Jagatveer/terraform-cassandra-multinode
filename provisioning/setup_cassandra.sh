@@ -36,7 +36,7 @@ sudo apt-get install -y dsc30 -V
 sudo apt-get install -y cassandra-tools
 sudo service cassandra stop
 sudo rm -rf /var/lib/cassandra/data/system/*
-sudo sed -i "s/cluster_name: 'Test Cluster'/cluster_name: 'kong_cassandra_cluster'/g" /etc/cassandra/cassandra.yaml
+sudo sed -i "s/cluster_name: 'Test Cluster'/cluster_name: 'jagat_cassandra_cluster'/g" /etc/cassandra/cassandra.yaml
 #Seed nodes are used to bootstrap new nodes into the cluster.  Without a seed node new nodes can't join.  Too many is bad but there should be more than one.
 sudo sed -i "s/seeds: \"127.0.0.1\"/seeds: \"10.2.5.170,10.2.5.171\"/g" /etc/cassandra/cassandra.yaml
 sudo sed -i "s/listen_address: localhost/listen_address:/g" /etc/cassandra/cassandra.yaml

@@ -36,7 +36,6 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
-
 resource "aws_route_table" "r" {
   vpc_id = "${aws_vpc.cassandra.id}"
   route {
