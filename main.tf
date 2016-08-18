@@ -106,4 +106,5 @@ resource "aws_security_group" "allow_all_ssh_access" {
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
 }

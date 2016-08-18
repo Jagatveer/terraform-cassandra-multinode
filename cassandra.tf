@@ -30,6 +30,16 @@ resource "aws_instance" "cassandra_0" {
       key_file = "${var.ssh_key_path}"
     }
   }
+
+  provisioner "file" {
+    source = "provisioning/backup.bash"
+    destination = "/home/ubuntu/backup.bash"
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      key_file = "${var.ssh_key_path}"
+    }
+  }
 }
 
 

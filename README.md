@@ -1,5 +1,7 @@
 # Terraform-cassandra-multinode
 
+### To the people who have taken fork of this repo. I have added terraform for a secondary server to demonstrate a simple backup mechanism, I will remove it in 2-3 days. Hold your PRs(if any). If in hurry, feel free to modify the code for your own repo (it's all open)
+
 Follow these steps to get a 3 node cassandra cluster up and running.
 
 * Install terraform.
@@ -57,4 +59,26 @@ UN  10.2.5.170  149.84 KB  256          64.3%             00a6ca46-a115-4dbf-a4a
 UN  10.2.5.171  170.39 KB  256          69.0%             b4e6b40a-6e51-47b1-8493-aadc2949db47  rack1
 UN  10.2.5.172  163.16 KB  256          66.7%             3294d6b2-a59a-41fb-8cac-53343cb8c049  rack1
 
+```
+For secondary server:
+```
+ssh -i <path2key>.pem ubuntu@<cassandra_2_ip>
+bash /tmp/provisioning/single.sh
+```
+
+Backup/Restore script uses the pem key to send backup to remote server, please make sure that the path and name is correct.
+
+* To create backup:
+```
+./backup.bash backup
+```
+* To restore backup:
+```
+  /restore.bash restore backup
+```
+Give confirmation to the warning to proceed:
+```
+Are you sure? It'll delete all current data (yes/no)
++ read decision
+yes
 ```
