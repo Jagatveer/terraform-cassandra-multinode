@@ -8,7 +8,7 @@ path_to_data="/var/lib/cassandra/data"
 path_to_commitlog="/var/lib/cassandra/commitlog"
 path_to_backup="/var/lib/cassandra/backup"
 log="/var/log/cassandra_backup.log"
-backup_server="54.218.73.95"
+backup_server="IP"
 path_to_remote_backup="/home/ubuntu/cassandra"
 
 check_exit_code() {
@@ -43,7 +43,7 @@ backup() {
 
     #save backup
     tar cf ${path_to_backup}.tar ${path_to_backup}
-#    rsync --delete -auve 'ssh -i /home/ubuntu/terraform_psnl.pem' $path_to_backup.tar ubuntu@${backup_server}:${path_to_remote_backup}/`hostname -s`${today}.tar 1>$log 2>&1
+    rsync --delete -auve 'ssh -i /home/ubuntu/terraform_psnl.pem' $path_to_backup.tar ubuntu@${backup_server}:${path_to_remote_backup}/`hostname -s`${today}.tar 1>$log 2>&1
 #    rsync -rq $path_to_backup.tar ${backup_server}::${path_to_remote_backup}/`hostname -s`${today}.tar 1>$log 2>&1
     check_exit_code "couldn't save backup on $backup_server"
 
