@@ -1,15 +1,14 @@
 #!/bin/bash
 set -eux
-# backup and restore script
+# backup and restore cassandra
 # author: jagatveer@hotmail.com
-
 
 today=`date "+%Y%m%d"`
 path_to_data="/var/lib/cassandra/data"
 path_to_commitlog="/var/lib/cassandra/commitlog"
 path_to_backup="/var/lib/cassandra/backup"
 log="/var/log/cassandra_backup.log"
-backup_server="IP"
+backup_server="54.218.73.95"
 path_to_remote_backup="/home/ubuntu/cassandra"
 
 check_exit_code() {
@@ -60,16 +59,12 @@ restore() {
     decision=`echo $decision|tr [:upper:] [:lower:]|cut -c 1`
     if [ "$decision" != "y" ]; then exit 1; fi
         day=$1
-        backups_count=`ls ${path_to_remote_backup}/ |grep $day|wc -l`
+        backups_count=`ls ${path_to_remote_backup}/var/lib/cassandra/backup/ |grep $day|wc -l`
         if [ "$backups_count" -eq "0" ]; then
-                echo "backup not found, check ${path_to_remote_backup}/"
-                return 1
-        elif [ "$backups_count" -gt 1 ]; then
-                echo "choose one from $backups_count variants"
-                ls ${path_to_remote_backup}/ |grep $day
+                echo "backup not found, check ${path_to_remote_backup}/var/lib/cassandra/backup"
                 return 1
         else
-                day=`ls ${path_to_remote_backup}/ |grep $day|awk '{print $NF}'`
+                day=`ls ${path_to_remote_backup}/var/lib/cassandra/backup/ |grep $day|awk '{print $NF}'`
         fi
 
     #stop cassandra
@@ -78,10 +73,10 @@ restore() {
     rm -rf $path_to_commitlog/*
     find $path_to_data -type f -name "*.db" -delete
 
-    #download backup and put it in right places
+    #download the backup and put it in right places
     rm -rf $path_to_backup/restore
     mkdir -p $path_to_backup/
-    rsync -qr ${path_to_remote_backup}/${day} $path_to_backup/
+    cp -rf ${path_to_remote_backup}/var/lib/cassandra/backup/${day} $path_to_backup/
     tar xf $path_to_backup/${day} -C $path_to_backup/
     for dir in $path_to_backup/$day/backup/*; do
         dst=`echo $dir|sed -e 's%.*/%%' -e 's/snapshot.*//g' -e 's\%%\/\g'`
