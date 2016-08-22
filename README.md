@@ -74,7 +74,9 @@ Backup/Restore script uses the pem key to send backup to remote server, please m
 ```
 * To restore backup:
 ```
-  /restore.bash restore backup
+sh restorenew.sh restore BACKUPDAY
+Example:
+sh restorenew.sh restore 20160822
 ```
 Give confirmation to the warning to proceed:
 ```
