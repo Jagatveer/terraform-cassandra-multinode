@@ -44,7 +44,6 @@ backup() {
     #save backup
     tar cf ${path_to_backup}.tar ${path_to_backup}
     rsync --delete -auve 'ssh -i /home/ubuntu/terraform_psnl.pem' $path_to_backup.tar ubuntu@${backup_server}:${path_to_remote_backup}/`hostname -s`${today}.tar 1>$log 2>&1
-#    rsync -rq $path_to_backup.tar ${backup_server}::${path_to_remote_backup}/`hostname -s`${today}.tar 1>$log 2>&1
     check_exit_code "couldn't save backup on $backup_server"
 
     #delete local backup
