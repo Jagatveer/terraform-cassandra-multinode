@@ -1,6 +1,7 @@
 # Terraform-cassandra-multinode
 
-### To the people who have taken fork of this repo. I have added terraform for a secondary server to demonstrate a simple backup mechanism, I will remove it in 2-3 days. Hold your PRs(if any). If in hurry, feel free to modify the code for your own repo (it's all open)
+* Chef version at the following link:
+https://github.com/Jagatveersingh/cassandra-multinode
 
 Follow these steps to get a 3 node cassandra cluster up and running.
 
